@@ -17,6 +17,8 @@ celery.conf.beat_schedule = {
     }
 }
 
+celery.conf.task_routes = {'emailer.tasks.send_reports': {'queue': 'email'}}
+
 
 @celery.task()
 def send_reports():
