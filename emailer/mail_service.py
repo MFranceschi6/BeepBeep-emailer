@@ -7,7 +7,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from email.utils import make_msgid
-from request_utils import get_request_retry, users_endpoint, runs_endpoint
+from emailer.request_utils import get_request_retry, users_endpoint, runs_endpoint
 
 DATA_SERVICE = "http://" + os.environ[
     'DATASERVICE'] + ':5002' if 'DATASERVICE' in os.environ else "http://127.0.0.1:5002"
@@ -84,11 +84,11 @@ class MailService:
 
         delta = datetime.timedelta(seconds=0)
 
-        if periodicity == 'daily':
+        if periodicity == 'Daily':
             delta = datetime.timedelta(days=1)
-        elif periodicity == 'weekly':
+        elif periodicity == 'Weekly':
             delta = datetime.timedelta(days=7)
-        elif periodicity == 'monthly':
+        elif periodicity == 'Monthly':
             delta = monthdelta.Monthdelta(1)
 
         return delta
@@ -194,14 +194,14 @@ class MailService:
         for user in users['users']:
             print(user)
             # Not set
-            if user['report_periodicity'] == 'no':
+            if user['report_periodicity'] == 'No':
                 pass
             # Daily
-            if user['report_periodicity'] == 'daily':
+            if user['report_periodicity'] == 'Daily':
                 self.__sendMail(user)
             # Weekly
-            elif user['report_periodicity'] == 'weekly' and self.__today.isoweekday() == 1:
+            elif user['report_periodicity'] == 'Weekly' and self.__today.isoweekday() == 1:
                 self.__sendMail(user)
             # Monthly
-            elif user['report_periodicity'] == 'monthly' and self.__today.day == 1:
+            elif user['report_periodicity'] == 'Monthly' and self.__today.day == 1:
                 self.__sendMail(user)

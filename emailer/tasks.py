@@ -1,11 +1,10 @@
 from celery import Celery
 from celery.schedules import crontab
 import os
-import datetime
-from mail_service import MailService
+from emailer.mail_service import MailService
 
 BACKEND = BROKER = 'redis://' + os.environ[
-    'REDIS'] + ":6479" if 'DATASERVICE' in os.environ else "redis://127.0.0.1:6479"
+    'REDIS'] + ":6379" if 'REDIS' in os.environ else "redis://127.0.0.1:6379"
 celery = Celery(__name__, backend=BACKEND, broker=BROKER)
 __mail_service = MailService()
 
@@ -13,8 +12,8 @@ __mail_service = MailService()
 celery.conf.timezone = 'Europe/Rome'
 celery.conf.beat_schedule = {
     'send_reports-every-midnight': {
-        'task': 'emailer.emailer.send_reports',
-        'schedule': crontab(hour = 0, minute = 0)
+        'task': 'emailer.tasks.send_reports',
+        'schedule': 30.0 # crontab(hour = 0, minute = 0)
     }
 }
 

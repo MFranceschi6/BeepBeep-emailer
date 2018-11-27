@@ -1,5 +1,4 @@
-celery
-flask-sqlalchemy
-sqlalchemy_utils
+Celery
 MonthDelta
 requests
+redis==2.10.6
