@@ -4,4 +4,4 @@ ADD requirements.txt ./app/
 WORKDIR /app
 RUN pip install -r requirements.txt
 ADD . /app
-CMD ["celery","-A", "emailer.tasks", "worker", "-B", "-l", "info", "-s", "./schedule-db"]
+CMD ["celery","-A", "emailer.tasks", "worker", "-q", "email", "-B", "-l", "info", "-s", "./schedule-db"]
