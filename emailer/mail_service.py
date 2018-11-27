@@ -10,7 +10,7 @@ from email.utils import make_msgid
 from emailer.request_utils import get_request_retry, users_endpoint, runs_endpoint
 
 DATA_SERVICE = "http://" + os.environ[
-    'DATASERVICE'] + ':5002' if 'DATASERVICE' in os.environ else "http://127.0.0.1:5002"
+    'DATA_SERVICE'] + ':5002' if 'DATA_SERVICE' in os.environ else "http://127.0.0.1:5002"
 
 
 class MailService:
