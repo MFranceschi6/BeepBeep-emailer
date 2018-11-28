@@ -13,7 +13,7 @@ celery.conf.timezone = 'Europe/Rome'
 celery.conf.beat_schedule = {
     'send_reports-every-midnight': {
         'task': 'emailer.tasks.send_reports',
-        'schedule': 30.0 # crontab(hour = 0, minute = 0)
+        'schedule': crontab(hour = 0, minute = 0)
     }
 }
 
