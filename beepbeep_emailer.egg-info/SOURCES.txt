@@ -9,3 +9,5 @@ emailer/__init__.py
 emailer/mail_service.py
 emailer/request_utils.py
 emailer/tasks.py
+tests/__init__.py
+tests/test_emailer.py
