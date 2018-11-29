@@ -2,14 +2,6 @@ import pytest
 from unittest import mock
 from emailer.mail_service import *
 from datetime import datetime
-from emailer.tasks import send_reports
-
-
-def test_task(celery_session_worker):
-    with mock.patch("emailer.tasks.__mail_service.sendReports") as mocked:
-        res = send_reports.delay()
-        res.wait()
-        mocked.assert_called_once()
 
 
 # Test if the method for sending reports is indeed invoked

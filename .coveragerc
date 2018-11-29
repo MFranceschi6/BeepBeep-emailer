@@ -1,3 +1,4 @@
 [run]
 omit =
 	emailer/request_utils.py
+	emailer/tasks.py
