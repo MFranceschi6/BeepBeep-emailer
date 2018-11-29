@@ -13,8 +13,8 @@ celery.conf.timezone = 'Europe/Rome'
 celery.conf.beat_schedule = {
     'send_reports-every-midnight': {
         'task': 'emailer.tasks.send_reports',
-        'schedule': 30.0  # crontab(hour = 0, minute = 0)
-    }                     # this crontab is the real implementation but for test purpose we set it to 30sec
+        'schedule': crontab(hour = 0, minute = 0)
+    }
 }
 
 celery.conf.task_routes = {'emailer.tasks.send_reports': {'queue': 'email'}}
