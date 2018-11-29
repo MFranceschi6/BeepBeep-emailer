@@ -1,0 +1,5 @@
+__pycache__
+.coverage
+.pytest_cache
+beepbeep_emailer.egg-info
+celerybeat-schedule
